@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#101510">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23101510'/%3E%3Cpath d='M12 12h40v40H12z' fill='%23c8d95b'/%3E%3C/svg%3E">
+  <title>OPERATION: DUSTFALL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game">
+    <canvas id="scene" aria-label="3D tactical mission"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">▰</span><span>FIELD<span class="brand-dim"> OPS</span></span><i>09</i></div>
+      <div class="mission"><span class="live-dot"></span><span id="mission-label">OPERATION: DUSTFALL</span></div>
+      <button id="pause-button" class="icon-button" aria-label="Pause game">Ⅱ</button>
+    </header>
+    <section class="hud-left">
+      <div class="objective-card"><span class="eyebrow">PRIMARY OBJECTIVE</span><strong id="objective">SECURE THE OUTPOST</strong><div class="progress-track"><i id="objective-progress"></i></div><div class="objective-foot"><span>HOSTILES NEUTRALIZED</span><b id="kills">0 <small>/ 12</small></b></div></div>
+      <div class="radar"><div class="radar-grid"></div><span class="radar-sweep"></span><span class="radar-player">▲</span><span class="radar-blip b1"></span><span class="radar-blip b2"></span><span class="radar-blip b3"></span><div class="radar-label">SECTOR 04 <b>● LIVE</b></div></div>
+    </section>
+    <div class="center-reticle" aria-hidden="true"><i></i><b></b><span></span></div>
+    <div class="hit-marker" id="hit-marker">✕</div>
+    <div class="toast" id="toast">HOSTILE DOWN</div>
+    <section class="hud-bottom">
+      <div class="status-panel"><div class="status-icon">+</div><div class="status-data"><span>VITALS</span><strong id="health-value">100<span>%</span></strong><div class="health-track"><i id="health-bar"></i></div></div></div>
+      <div class="compass"><span>W</span><i></i><b>N</b><i></i><span>E</span><small id="heading">N 000°</small></div>
+      <div class="weapon-panel"><div class="weapon-name"><span>PRIMARY / 01</span><b>RANGER <em>5.56</em></b></div><div class="ammo"><strong id="ammo">30</strong><span>/ 180</span><button id="reload-button" aria-label="Reload">↻</button></div><div class="weapon-line"><i></i><i></i><i></i><i></i><i></i></div></div>
+    </section>
+    <section id="touch-controls" aria-label="Touch controls">
+      <div class="stick-zone" id="stick-zone"><div class="stick-base"><div class="stick-knob" id="stick-knob"></div></div><span>MOVE</span></div>
+      <div class="touch-actions"><button id="touch-reload" class="touch-reload">↻<small>RELOAD</small></button><button id="fire-button" class="fire-button"><span>✦</span><small>FIRE</small></button></div>
+      <div id="look-zone" aria-hidden="true"></div>
+    </section>
+    <div id="overlay" class="overlay">
+      <div class="overlay-card">
+        <div class="classified"><span>TACTICAL BRIEFING</span><i>FIELD OPS / 09</i></div>
+        <div class="hero-kicker"><span></span> OPERATION DUSTFALL <span></span></div>
+        <h1>HOLD<br><em>THE LINE.</em></h1>
+        <p class="brief">A hostile squad has overrun the desert relay station. Clear the perimeter and secure the outpost before reinforcements arrive.</p>
+        <div class="brief-stats"><div><span>AREA</span><b>SECTOR 04</b></div><div><span>THREATS</span><b>12 HOSTILES</b></div><div><span>LOADOUT</span><b>RANGER 5.56</b></div></div>
+        <button id="start-button" class="start-button">DEPLOY <span>→</span></button>
+        <div class="control-hint" id="control-hint">WASD MOVE <i>•</i> MOUSE AIM <i>•</i> CLICK FIRE <i>•</i> R RELOAD</div>
+      </div>
+    </div>
+    <div id="pause-overlay" class="overlay hidden"><div class="overlay-card pause-card"><div class="classified"><span>MISSION PAUSED</span><i>STAY SHARP</i></div><h2>TAKE A<br><em>BREATHER.</em></h2><p class="brief">The perimeter can wait. Your squad is holding position.</p><button id="resume-button" class="start-button">RESUME MISSION <span>→</span></button><div class="control-hint">YOUR OBJECTIVE IS STILL ACTIVE</div></div></div>
+    <div id="end-overlay" class="overlay hidden"><div class="overlay-card pause-card"><div class="classified"><span id="end-kicker">MISSION COMPLETE</span><i>FIELD OPS / 09</i></div><h2 id="end-title">OUTPOST<br><em>SECURED.</em></h2><p class="brief" id="end-copy">Area secure. The relay is back online. Clean work, operator.</p><div class="brief-stats"><div><span>THREATS CLEARED</span><b id="final-kills">12 / 12</b></div><div><span>VITALS</span><b id="final-health">100%</b></div><div><span>STATUS</span><b id="final-status">MISSION COMPLETE</b></div></div><button id="again-button" class="start-button">REDEPLOY <span>↻</span></button></div></div>
+    <div id="damage-flash"></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
